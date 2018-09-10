@@ -11,11 +11,9 @@ def Partition(array,p,fim):
 	a = p+1
 	b = fim
 	while(True):
-		time.sleep(1)
-		print("B->"+str(b)+" A->"+str(a))
-		while array[b]>x and b>=a:
+		while array[b]>x:
 			b=b-1
-		while array[a]<x and a<=b:
+		while array[a]<x and a <fim:
 			a=a+1
 		if a<b:
 			array[a],array[b]=array[b],array[a]
@@ -27,7 +25,6 @@ def Partition(array,p,fim):
 def QuickSort(array,inicio,fim):
 	if inicio < fim:
 		q= Partition(array,inicio,fim)
-		print (q)
 		QuickSort(array,inicio,q-1)
 		QuickSort(array,q+1,fim)
 	return array
@@ -40,13 +37,13 @@ if options.arquivo != "":
 	a=[]
 	try:
 		arq=open(options.arquivo,'r')
-		a=arq.read().splitlines()
+		a=arq.readlines()
 		arq.close()
 	except:
 		print('Erro ao ler o arquivo')
 
 	inicio = time.time()
-	a=[3,5,62,6,7,4,3,7,5,8]
+	#a=[3,5,62,6,7,4,3,7,5,8]
 	print(a)
 	print (QuickSort(a,0,int(len(a))-1))
 	print ('Tempo gasto: ' + str(time.time() - inicio) + ' segundos')
