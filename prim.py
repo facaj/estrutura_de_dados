@@ -1,8 +1,7 @@
 
-#!/usr/bin/env python3
+#!/usr/bin/env python2
 # -*- coding: utf-8 -*-
 #Aluno: Francisco de Assis
-
 
 def heapify(array,tamanho,i_root):
 	maior = i_root
@@ -27,15 +26,36 @@ def heapSort(array):
 
 
 class Prim():
+	"""
+MST-PRIM (G, w, r) {
+
+        for each key E G.V
+
+            u.key = infinito
+            u.parent = NIL
+
+        r.key = 0
+        Q = G.V
+        while (Q != 0)
+
+            u = Extract-Min(Q)
+            for each v E G.Adj[u]
+
+                if (v E Q) and w(u,v) < v.key
+
+                    v.parent = u
+                    v.key = w(u,v)    <== relax function, Pay attention here
+
+}
+	"""
+
 	def __init__(self,grafo):
 		self.grafo=grafo
 		self.pai={}
-		self.arvore=[]
 		self.valores_vertices=[]
 		self.infinito=sorted(self.grafo.arestas())[-1][0] + 1
 		for v in self.grafo.vertices():
 			self.valores_vertices.append([self.infinito,v])
-			#self.pai[v] = -1
 	def get_valor_vertice(self,v):
 		for i in self.valores_vertices:
 			if i[1] == v:
